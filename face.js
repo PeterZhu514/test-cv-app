@@ -1,8 +1,8 @@
-let videoHeight = 480
-let videoWidth = 640
+let videoHeight = 480;
+let videoWidth = 640;
 let outputCanvas = document.getElementById("outputCanvas");
 
-let cap = null
+let cap = null;
 let faceCascade = null;
 let src = null;
 let gray = null;

@@ -72,29 +72,48 @@
     <div class="container">
         <div class="row">
           <div class="col-lg-7">
-            <video  width="640" height="480" id="video" style="display:none"></video>
-            <canvas width="640" height="480" id="outputCanvas"></canvas>
-            <script src="face.js"></script>
-            <script async src="opencv/opencv.js"></script>
+			<video id="video" width="640" height="480" autoplay="autoplay"></video>
+			<canvas id="canvas" width="640" height="480"  style="display: none;"></canvas>
           </div>
           <div class="col-lg-5" >
             <div class="panel panel-default">
               <!-- Default panel contents -->
-              <div class="panel-heading">监控显示面板</div>
+              <div class="panel-heading">
+              	<span>监控显示面板</span>
+              	<span style="position: absolute;right: 20px;">监控期间出现的人数：<b class="answer_num">0</b></span>
+              </div>
               <div class="panel-body">
-                <p>室内当前人数：<b id="answer_num">0</b> <button type="button" class="btn btn-default btn-sm" id="analyse_pic" style="position: absolute;right: 20px;">开始识别</button></p>
+              	<div>
+				  <div class="form-group">
+				    <div class="input-group" style="width:55%;float:left;">
+				      <div class="input-group-addon">Time</div>
+				      <input type="text" class="form-control" id="mon_time" placeholder="监控时长">
+				      <div class="input-group-addon">秒</div>
+				    </div>
+				    <button class="btn btn-primary" id="analyse_pic" style="margin-left: 10px;">开始监控</button>
+				    <button class="btn btn-warning" id="stop_analyse" style="margin-left: 5px;" disabled="disabled">停止监控</button>
+				  </div>
+				</div>
+				<div class="alert alert-success alert-dismissible" role="alert" style="display: none;">
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				  <strong>Success!</strong> 监控已经开始！
+				</div>
+				<div class="alert alert-warning alert-dismissible" role="alert" style="display: none;">
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				  <strong>Warning!</strong> Better check yourself, you're not looking too good.
+				</div>
+				<br>
                 <span  class="help-block">Tips:<br />由于当前摄像设备的摄像能力的限制,有效识别范围<=2m，如需识别更远距离，请更换专业的摄像设备！</span>
               </div>
 
               <!-- Table -->
               <table class="table">
                 <tr id="answer_th">
-                  <th>时间点</th>
-                  <th>工号</th>
-                  <th>可信度评分</th>
+                  <th>监控期间出现的人的工号(详细信息请查看日志)</th>
                 </tr>
-                <tr id="answer_item"></tr>
+                <tr class="answer_item"></tr>
               </table>
+              <img src="./processing.gif" style="display: none;" id="processing">
             </div>
           </div>
         </div>
@@ -165,8 +184,9 @@
     
     <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./layer/layer.js"></script>
 
-    <script type="text/javascript" src="analyse_v2.js"></script>
+    <script type="text/javascript" src="analyse_v4.js"></script>
     <script src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.js"></script>
   </body>
 </html>
